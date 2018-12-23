@@ -20,8 +20,12 @@
  *
  */
 
-include "platform.h"
-include "memory.h"
+#include <stdlib.h>
+#include <stdint.h>
+#include <stddef.h>
+#include "platform.h"
+#include "memory.h"
+
 
 int main(void)
 {
@@ -29,5 +33,5 @@ int main(void)
     course1();
    #endif
 
-   return 0
+   return 0;
 }
