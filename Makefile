@@ -40,7 +40,7 @@ include sources.mk
 PLATFORM = MSP432 
 
 # Architectures Specific Flags
-LINKER_FILE = -T ../msp432p401r.lds 
+LINKER_FILE = -T ./msp432p401r.lds 
 CPU = cortex-m4
 FPU = fpv4-sp-d16
 ARCH = thumb
@@ -165,7 +165,17 @@ $(TARGET).out : $(OBJS)
 #The targets are all files with the extensions in the list.
 .PHONY : clean
 clean:
-	rm -f *.o *.i *.asm *.out *.map *.d 
+#	rm -f ./src/{*.o,*.i,*.asm,*.out,*.map,*.d} 
+	find . -maxdepth 2 -name "*.o" -type f -delete
+	find . -maxdepth 2 -name "*.i" -type f -delete
+	find . -maxdepth 2 -name "*.asm" -type f -delete
+	find . -maxdepth 2 -name "*.out" -type f -delete
+	find . -maxdepth 2 -name "*.map" -type f -delete
+	find . -maxdepth 2 -name "*.d" -type f -delete
+
+
+
+
 
 
 
