@@ -20,31 +20,92 @@
  * @date April 1 2017
  *
  */
+#include <stdlib.h>
+#include <stdint.h>
+#include <stddef.h>
 #include "memory.h"
+#include "platform.h"
 
 /***********************************************************
  Function Definitions
 ***********************************************************/
-void set_value(char * ptr, unsigned int index, char value){
+void set_value(char * ptr, unsigned int index, char value)
+{
   ptr[index] = value;
 }
 
-void clear_value(char * ptr, unsigned int index){
+void clear_value(char * ptr, unsigned int index)
+{
   set_value(ptr, index, 0);
 }
 
-char get_value(char * ptr, unsigned int index){
+char get_value(char * ptr, unsigned int index)
+{
   return ptr[index];
 }
 
-void set_all(char * ptr, char value, unsigned int size){
+void set_all(char * ptr, char value, unsigned int size)
+{
   unsigned int i;
   for(i = 0; i < size; i++) {
     set_value(ptr, i, value);
   }
 }
 
-void clear_all(char * ptr, unsigned int size){
+void clear_all(char * ptr, unsigned int size)
+{
   set_all(ptr, 0, size);
 }
 
+uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length)
+{
+ 
+ if(src == NULL || dst == NULL){
+   PRINTF("Null pointers passed to function.");
+   return NULL;
+ }
+
+ int i;
+ uint8_t *dst_beginning = dst;
+ uint8_t *temp_begin;
+
+ if((dst <= src && dst+length >= src) ||\
+ (dst <= src+length && dst+length >= src+length)) {
+
+   uint8_t *temp = malloc(sizeof(uint8_t)*length);
+   if(temp == NULL){
+    PRINTF("Error allocating memory.");
+    return NULL;
+   }
+   else temp_begin = temp;
+
+   for(i = 0; i < length; i++){
+     *temp = *src;
+     free(src);
+     temp++;
+     src++;
+   }
+
+   for(i = 0; i < length; i++){
+     *temp_begin = *dst;
+     free(temp_begin);
+     temp_begin++;
+     dst++;
+   }
+
+ }
+
+ else {
+   
+   for(i = 0; i < length; i++){
+     *dst = *src;
+     free(src);
+     src++;
+     dst++;
+   }
+
+ }
+
+ return dst_beginning;
+
+}

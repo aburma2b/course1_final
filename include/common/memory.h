@@ -34,7 +34,7 @@
  *
  * @return void.
  */
-void set_value(char * ptr, unsigned int index, char value);
+void set_value(char *ptr, unsigned int index, char value);
 
 /**
  * @brief Clear a value of a data array 
@@ -47,7 +47,7 @@ void set_value(char * ptr, unsigned int index, char value);
  *
  * @return void.
  */
-void clear_value(char * ptr, unsigned int index);
+void clear_value(char *ptr, unsigned int index);
 
 /**
  * @brief Returns a value of a data array 
@@ -60,7 +60,7 @@ void clear_value(char * ptr, unsigned int index);
  *
  * @return Value to be read.
  */
-char get_value(char * ptr, unsigned int index);
+char get_value(char *ptr, unsigned int index);
 
 /**
  * @brief Sets data array elements to a value
@@ -75,7 +75,7 @@ char get_value(char * ptr, unsigned int index);
  *
  * @return void.
  */
-void set_all(char * ptr, char value, unsigned int size);
+void set_all(char *ptr, char value, unsigned int size);
 
 /**
  * @brief Clears elements in a data array
@@ -88,6 +88,104 @@ void set_all(char * ptr, char value, unsigned int size);
  *
  * @return void.
  */
-void clear_all(char * ptr, unsigned int size);
+void clear_all(char *ptr, unsigned int size);
+
+/**
+ * @brief Moves a length of bytes from src to dest 
+ *
+ * Given two pointers, source and destinations, moves the 
+ * desired length of data from source to destination.
+ *
+ * @param src The source pointer with data
+ * @param dst The destination pointer
+ * @param length The length of data to be moved
+ *
+ * @return Pointer to destination.
+ */
+uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length);
+
+/**
+ * @brief Copies a length of bytes from src to dest 
+ *
+ * Given two pointers, source and destinations, copies the 
+ * desired length of data from source to destination. No data
+ * is copied if there is overlap of source addresses and destination
+ * addresses.
+ *
+ * @param src The source pointer with data
+ * @param dst The destination pointer
+ * @param length The length of data to be moved
+ *
+ * @return Pointer to destination.
+ */
+uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length);
+
+/**
+ * @brief Sets memory locations to given value
+ *
+ * Given a starting memory location, src, sets
+ * a number of memory locations, depending on length, 
+ * to the given value.
+ *
+ * @param src The source pointer 
+ * @param length  The number of memory locations to be set 
+ * @param value The value to be set
+ *
+ * @return Pointer to source.
+ */
+uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value);
+
+/**
+ * @brief Sets memory locations to zero
+ *
+ * Given a starting memory location, src, sets
+ * a number of memory locations, depending on length, 
+ * to zero.
+ *
+ * @param src The source pointer 
+ * @param length  The number of memory locations to be set 
+ *
+ * @return Pointer to source.
+ */
+uint8_t *my_memzero(uint8_t *src, size_t length);
+
+/**
+ * @brief Reverse the order of bytes
+ *
+ * Given a starting memory location, src, and
+ * an end, length. Reverses the order of the data
+ *
+ * @param src The pointer to start of the memory location
+ * @param length The end point of memory locations to be reversed 
+ *
+ * @return Pointer to source.
+ */
+uint8_t *my_reverse(uint8_t *src, size_t length);
+
+/**
+ * @brief Allocates a length of word sized memory
+ *
+ * Given the length of memory to be allocated,dynamically
+ * allocates memory of size word. Returns pointer to memory
+ * if successful. Returns null pointer if unsuccessful.
+ *
+ * @param length The amount of memory to be allocated 
+ *
+ * @return Pointer to beginning of memory segment/null pointer
+ */
+int32_t *reserve_words(size_t length);
+
+/**
+ * @brief Frees dynamically allocated memory
+ *
+ * Given a pointer to a memory location. Frees dynamically
+ * allocated memory.
+ *
+ * @param src The pointer to start of the allocated memory 
+ *
+ * @return void.
+ */
+void free_words(uint32_t *src);
+
 
 #endif /* __MEMORY_H__ */
