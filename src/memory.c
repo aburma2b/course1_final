@@ -70,7 +70,8 @@ uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length)
  uint8_t *temp_begin;
 
  if((dst <= src && dst+length >= src) ||\
- (dst <= src+length && dst+length >= src+length)) {
+ (dst >= src && dst <= src+length) ||\
+ (dst+length >- src && dst+length <= src+length)) {
 
    uint8_t *temp = malloc(sizeof(uint8_t)*length);
    if(temp == NULL){

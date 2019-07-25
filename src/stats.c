@@ -28,7 +28,7 @@
 
 /* Size of the Data Set */
 #define SIZE (40)
-
+/*
 int main(void) 
 {
 
@@ -41,12 +41,12 @@ int main(void)
   int len = SIZE-1;
   print_statistics(test, len);
   print_array(test, len);
-  /* Other Variable Declarations Go Here */
-  /* Statistics and Printing Functions Go Here */
+  // Other Variable Declarations Go Here 
+  // Statistics and Printing Functions Go Here 
  
  return 0;
 
-}
+}*/
 
 
 void sort_array(unsigned char *array, int low, int high)
