@@ -66,14 +66,15 @@ uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length)
  }
 
  int i;
+ size_t t_length = length-1;
  uint8_t *dst_beginning = dst;
  uint8_t *temp_begin;
 
- if((dst <= src && dst+length >= src) ||\
- (dst >= src && dst <= src+length) ||\
- (dst+length >- src && dst+length <= src+length)) {
+ if((dst <= src && dst+t_length >= src) ||\
+ (dst >= src && dst <= src+t_length) ||\
+ (dst+t_length >= src && dst+t_length <= src+t_length)) {
 
-   uint8_t *temp = malloc(sizeof(uint8_t)*length);
+   uint8_t *temp = (uint8_t*)  malloc(sizeof(uint8_t)*length);
    if(temp == NULL){
     PRINTF("Error allocating memory.");
     return NULL;
@@ -109,4 +110,97 @@ uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length)
 
  return dst_beginning;
 
+}
+
+uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length);
+{
+
+  uint8_t *dst_begin = dst;
+
+  if(src == NULL || dst == NULL){
+   PRINTF("Null pointers passed to function. Exiting.");
+   return NULL;
+  }
+
+  for(i = 0; i < length; i++){
+    *dst = *src;
+    src++;
+    dst++;
+  }
+
+  return dst_begin;
+
+}
+
+uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value);
+{
+
+  uint8_t *src_begin = src;
+
+  if(src == NULL){
+   PRINTF("Null pointer or length zero passed to function.\
+   Exiting.");
+   return src;
+  }
+
+  for(i = 0; i < length; i++){
+   *src = value;
+   src++;
+  }
+
+  return src_begin;
+}
+
+uint8_t *my_memzero(uint8_t *src, size_t length);
+{
+  
+  uint8_t *src_begin = src;
+
+  if(src == NULL){
+   PRINTF("Null pointer passed to function. Exiting.");
+   return src;
+  }
+
+  for(i = 0; i < length; i++){
+    *src = 0;
+    src++;
+  }
+
+  return src_begin;
+
+}
+
+uint8_t *my_reverse(uint8_t *src, size_t length)
+{
+  
+  uint8_t *src_begin = src;
+  uint8_t *temp = src+(length-1);
+  
+  while(src < temp){
+    *src = *temp;
+    src++;
+    temp--;
+  }
+ 
+  return src_begin;
+
+}
+
+int32_t *reserve_words(size_t length)
+{
+
+  int32_t *reserve = (int32_t*)  malloc(length*sizeof(int32_t));
+  if(reserve == NULL){
+    PRINTF("Memory allocation failed.");
+    return NULL;
+  }
+
+  return reserve;
+
+}
+  
+void free_words(uint32_t *src)
+{
+  free(src);
+  return 0;
 }

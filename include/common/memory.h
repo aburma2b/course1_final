@@ -19,9 +19,12 @@
  * @date April 1 2017
  *
  */
+
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
+
+void set_value(char *ptr, unsigned int index, char value);
 /**
  * @brief Sets a value of a data array 
  *
@@ -34,8 +37,8 @@
  *
  * @return void.
  */
-void set_value(char *ptr, unsigned int index, char value);
 
+void clear_value(char *ptr, unsigned int index);
 /**
  * @brief Clear a value of a data array 
  *
@@ -47,8 +50,8 @@ void set_value(char *ptr, unsigned int index, char value);
  *
  * @return void.
  */
-void clear_value(char *ptr, unsigned int index);
 
+char get_value(char *ptr, unsigned int index);
 /**
  * @brief Returns a value of a data array 
  *
@@ -60,8 +63,8 @@ void clear_value(char *ptr, unsigned int index);
  *
  * @return Value to be read.
  */
-char get_value(char *ptr, unsigned int index);
 
+void set_all(char *ptr, char value, unsigned int size);
 /**
  * @brief Sets data array elements to a value
  *
@@ -75,8 +78,8 @@ char get_value(char *ptr, unsigned int index);
  *
  * @return void.
  */
-void set_all(char *ptr, char value, unsigned int size);
 
+void clear_all(char *ptr, unsigned int size);
 /**
  * @brief Clears elements in a data array
  *
@@ -88,8 +91,8 @@ void set_all(char *ptr, char value, unsigned int size);
  *
  * @return void.
  */
-void clear_all(char *ptr, unsigned int size);
 
+uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length);
 /**
  * @brief Moves a length of bytes from src to dest 
  *
@@ -102,15 +105,15 @@ void clear_all(char *ptr, unsigned int size);
  *
  * @return Pointer to destination.
  */
-uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length);
 
+uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length);
 /**
  * @brief Copies a length of bytes from src to dest 
  *
  * Given two pointers, source and destinations, copies the 
- * desired length of data from source to destination. If overlap
- * in source and destination is detected, data is copied with no
- * data corruption.
+ * desired length of data from source to destination. Behaviour 
+ * is undefined if overlap of source and destination. Copy
+ * will still occur but will likely will corrupt data.
  *
  * @param src The source pointer with data
  * @param dst The destination pointer
@@ -118,14 +121,14 @@ uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length);
  *
  * @return Pointer to destination.
  */
-uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length);
 
+uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value);
 /**
  * @brief Sets memory locations to given value
  *
- * Given a starting memory location, src, sets
- * a number of memory locations, depending on length, 
- * to the given value.
+ * Given a starting memory location, src. Sets a number of 
+ * subsequent memory locations defined by, length, to 
+ * the given value.
  *
  * @param src The source pointer 
  * @param length  The number of memory locations to be set 
@@ -133,8 +136,8 @@ uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length);
  *
  * @return Pointer to source.
  */
-uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value);
 
+uint8_t *my_memzero(uint8_t *src, size_t length);
 /**
  * @brief Sets memory locations to zero
  *
@@ -147,8 +150,8 @@ uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value);
  *
  * @return Pointer to source.
  */
-uint8_t *my_memzero(uint8_t *src, size_t length);
 
+uint8_t *my_reverse(uint8_t *src, size_t length);
 /**
  * @brief Reverse the order of bytes
  *
@@ -160,8 +163,8 @@ uint8_t *my_memzero(uint8_t *src, size_t length);
  *
  * @return Pointer to source.
  */
-uint8_t *my_reverse(uint8_t *src, size_t length);
 
+int32_t *reserve_words(size_t length);
 /**
  * @brief Allocates a length of word sized memory
  *
@@ -173,8 +176,8 @@ uint8_t *my_reverse(uint8_t *src, size_t length);
  *
  * @return Pointer to beginning of memory segment/null pointer
  */
-int32_t *reserve_words(size_t length);
 
+void free_words(uint32_t *src);
 /**
  * @brief Frees dynamically allocated memory
  *
@@ -185,7 +188,5 @@ int32_t *reserve_words(size_t length);
  *
  * @return void.
  */
-void free_words(uint32_t *src);
-
 
 #endif /* __MEMORY_H__ */
