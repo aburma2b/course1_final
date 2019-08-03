@@ -120,7 +120,8 @@ uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length)
 
 uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length)
 {
-
+  
+  int i;
   uint8_t *dst_begin = dst;
 
   if(src == NULL || dst == NULL){
@@ -141,7 +142,8 @@ uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length)
 
 uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value)
 {
-
+ 
+  int i;
   uint8_t *src_begin = src;
 
   if(src == NULL){
@@ -162,6 +164,7 @@ uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value)
 uint8_t *my_memzero(uint8_t *src, size_t length)
 {
   
+  int i;
   uint8_t *src_begin = src;
 
   if(src == NULL){
