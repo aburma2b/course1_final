@@ -1,5 +1,6 @@
 /******************************************************************************
  * Copyright (C) 2017 by Alex Fosdick - University of Colorado
+ * modified by Ankush Burman 2019
  *
  * Redistribution, modification or use of this software in source or binary
  * forms is permitted as long as the files maintain this copyright. Users are 
@@ -15,8 +16,8 @@
  * This header file provides an abstraction of reading and
  * writing to memory via function calls. 
  *
- * @author Alex Fosdick
- * @date April 1 2017
+ * @author Alex Fosdick modified by Ankush Burman
+ * @date April 1 2017 modified on July 31, 2019
  *
  */
 
