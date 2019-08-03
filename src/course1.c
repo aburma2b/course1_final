@@ -29,6 +29,8 @@ int8_t test_data1() {
   int32_t num = -4096;
   uint32_t digits;
   int32_t value;
+  uint32_t BASE_16 = 16;
+  uint32_t BASE_10 = 10;
 
   PRINTF("\ntest_data1();\n");
   ptr = (uint8_t*) reserve_words( DATA_SET_SIZE_W );
