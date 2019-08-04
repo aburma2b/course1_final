@@ -36,8 +36,10 @@
 include sources.mk
 
 # Platform Overrides
-#Defualts to the MSP432 platform
-PLATFORM = MSP432 
+#Defualts to the host platform
+#For MSP432 use "PLATFORM=MSP432"
+#Eg.: make build PLATFORM=MSP432
+PLATFORM = HOST 
 
 # Architectures Specific Flags
 LINKER_FILE = -T ./msp432p401r.lds 
@@ -47,6 +49,8 @@ ARCH = thumb
 SPECS = nosys.specs
 
 #Sets verbose option. Defualts to no.
+#To use: VERBOSE=YES
+#Eg.: make build PLATFORM=HOST VERBOSE=YES
 VERBOSE = NO
 
 #Final target file name

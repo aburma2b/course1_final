@@ -24,6 +24,9 @@
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
+#include <stdint.h>
+#include <stdlib.h>
+#include <stddef.h>
 
 void set_value(char *ptr, unsigned int index, char value);
 /**
