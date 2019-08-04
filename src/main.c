@@ -25,6 +25,10 @@
 #include <stddef.h>
 #include "platform.h"
 #include "memory.h"
+#include "course1.h"
+#include "data.h"
+#include "stats.h"
+
 
 
 int main(void)

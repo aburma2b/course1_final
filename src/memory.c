@@ -184,6 +184,11 @@ uint8_t *my_memzero(uint8_t *src, size_t length)
 
 uint8_t *my_reverse(uint8_t *src, size_t length)
 {
+
+  if(src == NULL){
+    PRINTF("Null pointer passed to free_words. Exiting.");
+    return src;
+  }
   
   uint8_t *src_begin = src;
   uint8_t *temp = src+(length-1);
@@ -215,6 +220,12 @@ int32_t *reserve_words(size_t length)
 
 void free_words(uint32_t *src)
 {
+
+  if(src == NULL){
+    PRINTF("Null pointer passed to free_words. Exiting.");
+    return;
+  }
+
   free(src);
   return;
 }

@@ -94,6 +94,8 @@ void swap(unsigned char *a, unsigned char *b)
 
 void print_array(unsigned char *array, int len)
 {
+ 
+ #ifdef VERBOSE
  int i, j = 0;
 
  for (i = 0; i <= len; i++) {
@@ -106,6 +108,8 @@ void print_array(unsigned char *array, int len)
   }
  }
  printf("\n");
+ #endif 
+
 }
 
 

@@ -22,7 +22,9 @@
 #ifndef __DATA_H__
 #define __DATA_H__
 
-uint32_t my_findnum(uint8_t *ptr);
+#define arr_len 16
+
+int32_t my_findnum(uint8_t *ptr);
 /**
  * @brief Takes a pointer to ascii value and converts it to int 
  *

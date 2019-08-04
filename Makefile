@@ -46,8 +46,11 @@ FPU = fpv4-sp-d16
 ARCH = thumb
 SPECS = nosys.specs
 
+#Sets verbose option. Defualts to no.
+VERBOSE = NO
+
 #Final target file name
-TARGET = c1m2
+TARGET = COURSE1
 
 # Compiler Flags and Defines
 #Defaults to all the flags for the MSP432 platform
@@ -56,7 +59,7 @@ ifeq ($(PLATFORM), HOST)
  CC = gcc 
  LDFLAGS = -Wl,-Map=$(TARGET).map -O0
  CFLAGS = -Wall -Werror -g -std=c99
- CPPFLAGS = -D$(PLATFORM) $(INCLUDES) -MD
+ CPPFLAGS = -D$(PLATFORM) $(INCLUDES) -D$(TARGET) -MD
  OBJECTDUMP = objdump
  SIZE = size
 else
@@ -68,9 +71,13 @@ else
  -m$(ARCH) -march=armv7e-m -mfloat-abi=hard \
  -mfpu=$(FPU) --specs=$(SPECS)
     
- CPPFLAGS = -D$(PLATFORM) $(INCLUDES) -MD
+ CPPFLAGS = -D$(PLATFORM) $(INCLUDES) -D$(TARGET) -MD
  OBJECTDUMP = arm-none-eabi-objdump
  SIZE = arm-none-eabi-size
+endif
+
+ifeq ($(VERBOSE), YES)
+ CPPFLAGS += -DVERBOSE
 endif
 
 #Goes through all the files ending in .c 

@@ -24,11 +24,14 @@
 #include <stddef.h>
 #include "memory.h"
 #include "platform.h"
+#include "data.h"
+#include "course1.h"
+#include "stats.h"
 
-  const int32_t arr_len = 16;
 
-  //Hardcoded array with ascii values
-  const uint8_t ascii_arr[arr_len] = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36,\
+
+//Hardcoded array with ascii values
+const uint8_t ascii_arr[arr_len] = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36,\
                                  0x37, 0x38, 0x39, 0x41, 0x42, 0x43, 0x44,\
                                  0x45, 0x46};
 
@@ -85,6 +88,8 @@ uint8_t my_itoa(int32_t data, uint8_t *ptr, uint32_t base)
   //most significant. 
   my_reverse(ptr_start, ((size_t)length) );
 
+  print_array(ptr_start, length);
+
   return length;
 
 }
@@ -118,7 +123,7 @@ int32_t my_atoi(uint8_t *ptr, uint8_t digits, uint32_t base)
   my_reverse(ptr_start, length+1);
   
   for(i = 0; i < digits; i++){
-    data += (my_findnum(*ptr))*(base^i);
+    data += (my_findnum(ptr))*(base^i);
   }
 
   //If ASCII number was negative, mulitplies int number by
