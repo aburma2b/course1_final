@@ -36,10 +36,10 @@
 include sources.mk
 
 # Platform Overrides
-#Defualts to the host platform
-#For MSP432 use "PLATFORM=MSP432"
-#Eg.: make build PLATFORM=MSP432
-PLATFORM = HOST 
+#Defualts to the MSP432 platform
+#For HOST use "PLATFORM=HOST"
+#Eg.: make build PLATFORM=HOST
+PLATFORM=MSP432 
 
 # Architectures Specific Flags
 LINKER_FILE = -T ./msp432p401r.lds 
