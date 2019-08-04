@@ -22,7 +22,7 @@
 #ifndef __DATA_H__
 #define __DATA_H__
 
-#define arr_len 16
+#define arr_len (16)
 
 int32_t my_findnum(uint8_t *ptr);
 /**
@@ -35,6 +35,19 @@ int32_t my_findnum(uint8_t *ptr);
  * @param ptr Address of char with ascii value
  *
  * @return Integer which corresponds to ascii value.
+ */
+
+int32_t my_exponent(int32_t base, int32_t power);
+/**
+ * @brief Returns bases to the power of power 
+ *
+ * This function is for calculating powers and exponents.
+ * Without using the math.h library.
+ *
+ * @param base the base number
+ * @param power The power the base needs to be raised to
+ *
+ * @return Integer value of the resulting power calculation.
  */
 
 uint8_t my_itoa(int32_t data, uint8_t *ptr, uint32_t base);

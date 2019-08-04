@@ -191,12 +191,15 @@ uint8_t *my_reverse(uint8_t *src, size_t length)
   }
   
   uint8_t *src_begin = src;
-  uint8_t *temp = src+(length-1);
+  uint8_t *end = src+(length-1);
+  uint8_t temp;
   
-  while(src < temp){
-    *src = *temp;
+  while(src < end){
+    temp = *src;
+    *src = *end;
+    *end = temp;
     src++;
-    temp--;
+    end--;
   }
  
   return src_begin;

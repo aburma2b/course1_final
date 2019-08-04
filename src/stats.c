@@ -38,7 +38,7 @@ int main(void)
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
-  int len = SIZE-1;
+  int len = SIZE;
   print_statistics(test, len);
   print_array(test, len);
   // Other Variable Declarations Go Here 
@@ -98,7 +98,7 @@ void print_array(unsigned char *array, int len)
  #ifdef VERBOSE
  int i, j = 0;
 
- for (i = 0; i <= len; i++) {
+ for (i = 0; i < len; i++) {
   printf("%d ", array[i]);
   j++;
 
