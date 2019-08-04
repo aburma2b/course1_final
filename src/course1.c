@@ -98,6 +98,9 @@ int8_t test_memmove1() {
 
   if (! set ) 
   {
+    #ifdef VERBOSE
+     PRINTF("Trouble allocating to var: set \n");
+    #endif
     return TEST_ERROR;
   }
   
@@ -118,6 +121,9 @@ int8_t test_memmove1() {
   {
     if (set[i + 16] != i)
     {
+      #ifdef VERBOSE
+       PRINTF("Test error\n");
+      #endif
       ret = TEST_ERROR;
     }
   }

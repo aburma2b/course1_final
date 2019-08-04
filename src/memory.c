@@ -65,126 +65,102 @@ void clear_all(char * ptr, unsigned int size)
 uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length)
 {
  
- if(src == NULL || dst == NULL){
-   PRINTF("Null pointers passed to function.");
-   return NULL;
- }
-
- int i;
- size_t t_length = length-1;
- uint8_t *dst_beginning = dst;
- uint8_t *temp_begin;
-
- if((dst <= src && dst+t_length >= src) ||\
- (dst >= src && dst <= src+t_length) ||\
- (dst+t_length >= src && dst+t_length <= src+t_length)) {
-
-   uint8_t *temp = (uint8_t*)  malloc(sizeof(uint8_t)*length);
-   if(temp == NULL){
-    PRINTF("Error allocating memory.");
+  if(src == NULL || dst == NULL){
+    PRINTF("Null pointers passed to function.");
     return NULL;
+  }
+
+  int i;
+  //Because 0th position is always included.
+  int overlap_len = length-1;
+
+  if((dst <= src && dst+overlap_len >= src+overlap_len) ||\
+  (dst >= src && dst <= src+overlap_len) ||\
+  (dst+overlap_len >= src && dst+overlap_len <= src+overlap_len)) {
+    
+    uint8_t *temp = (uint8_t*)  calloc(length, sizeof(uint8_t));
+    if(temp == NULL){
+     PRINTF("Error allocating memory.");
+     return NULL;
+    }
+
+    for(i = 0; i < length; i++){
+      *(temp+i) = *(src+i);
+    }
+
+    for(i = 0; i < length; i++){
+      *(dst+i) = *(temp+i);
+    }
+
+    free(temp);
+  }
+
+  else {
+    for(i = 0; i < length; i++){
+    *(dst+i) = *(src+i);
    }
-   else temp_begin = temp;
 
-   for(i = 0; i < length; i++){
-     *temp = *src;
-     free(src);
-     temp++;
-     src++;
-   }
+  }
 
-   for(i = 0; i < length; i++){
-     *temp_begin = *dst;
-     free(temp_begin);
-     temp_begin++;
-     dst++;
-   }
-
- }
-
- else {
-   
-   for(i = 0; i < length; i++){
-     *dst = *src;
-     free(src);
-     src++;
-     dst++;
-   }
-
- }
-
- return dst_beginning;
+  return dst;
 
 }
 
 
 uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length)
-{
-  
+{  
   int i;
-  uint8_t *dst_begin = dst;
 
   if(src == NULL || dst == NULL){
-   PRINTF("Null pointers passed to function. Exiting.");
-   return NULL;
+    PRINTF("Null pointers passed to function. Exiting.");
+    return NULL;
   }
 
   for(i = 0; i < length; i++){
-    *dst = *src;
-    src++;
-    dst++;
+    *(dst+i) = *(src+i);
   }
 
-  return dst_begin;
-
+  return dst;
 }
 
 
 uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value)
 {
- 
   int i;
-  uint8_t *src_begin = src;
 
   if(src == NULL){
-   PRINTF("Null pointer or length zero passed to function.\
-   Exiting.");
-   return src;
+    PRINTF("Null pointer or length zero passed to function.\
+    Exiting.");
+    return src;
   }
 
   for(i = 0; i < length; i++){
-   *src = value;
-   src++;
+    *(src+i) = value;
   }
 
-  return src_begin;
+  return src;
 }
 
 
 uint8_t *my_memzero(uint8_t *src, size_t length)
-{
-  
+{  
   int i;
-  uint8_t *src_begin = src;
 
   if(src == NULL){
-   PRINTF("Null pointer passed to function. Exiting.");
-   return src;
+    PRINTF("Null pointer passed to function. Exiting.");
+    return src;
   }
 
   for(i = 0; i < length; i++){
-    *src = 0;
-    src++;
+    *(src+i) = 0;
   }
 
-  return src_begin;
-
+  return src;
 }
 
 
 uint8_t *my_reverse(uint8_t *src, size_t length)
 {
-
   if(src == NULL){
     PRINTF("Null pointer passed to free_words. Exiting.");
     return src;
@@ -203,13 +179,11 @@ uint8_t *my_reverse(uint8_t *src, size_t length)
   }
  
   return src_begin;
-
 }
 
 
 int32_t *reserve_words(size_t length)
 {
-
   int32_t *reserve = (int32_t*)  malloc(length*sizeof(int32_t));
   if(reserve == NULL){
     PRINTF("Memory allocation failed.");
@@ -217,13 +191,11 @@ int32_t *reserve_words(size_t length)
   }
 
   return reserve;
-
 }
 
 
 void free_words(uint32_t *src)
 {
-
   if(src == NULL){
     PRINTF("Null pointer passed to free_words. Exiting.");
     return;
